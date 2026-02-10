@@ -11,9 +11,13 @@
       max-width: 800px;
       margin: auto;
       line-height: 1.6;
+    }
+    h1 {
       text-align: center;
     }
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
     button {
       padding: 12px 20px;
       font-size: 16px;
@@ -29,70 +33,87 @@
 </head>
 <body>
 
-<!-- VERSION NORMALE -->
-<div id="normal" class="hidden">
+<div id="normalContent" class="hidden">
   <h1>🦐 VINCENT « LA GAMBAS » 🦐</h1>
 
-  <p>À 40 ans, une gambas n’est plus vraiment fraîche du matin.</p>
-  <p>Vincent non plus.</p>
+  <p>
+    Si tu es arrivé ici, c’est que tu viens de scanner le tatouage temporaire de
+    <strong>Vincent</strong>, surnommé depuis bien trop longtemps <strong>« la gambas »</strong>.
+  </p>
 
   <p>
-    Il ne perd pas ses cheveux. 
+    À 40 ans, une gambas n’est plus vraiment ce qu’on appelle « fraîche du matin ».
+    Et Vincent non plus.
+  </p>
+
+  <p>
+    Selon les experts en biologie maritime approximative :
+  </p>
+  <ul>
+    <li>texture moins ferme</li>
+    <li>confiance intacte malgré les signes</li>
+    <li>et légère odeur de nostalgie</li>
+  </ul>
+
+  <p>
+    Vincent ne perd pas ses cheveux. 
     Ils prennent leurs distances. 
-    Style Nicolas Peyrac, période de doute.
+    Comme certaines conversations avec lui.
+  </p>
+
+  <p>
+    Le style évoque Nicolas Peyrac, 
+    période où même Nicolas Peyrac doutait.
   </p>
 
   <p><strong>Anecdote n°1</strong><br>
-    Enfant, Vincent s’est coiffé à la crème dépilatoire.<br>
+    Enfant, Vincent s’est coiffé avec de la crème dépilatoire.
+    Surpris, il a expliqué très sérieusement :
     « Je mets du <em>zel</em>. »
   </p>
 
   <p><strong>Anecdote n°2</strong><br>
-    À la messe, au lieu de « Amen » :<br>
+    À l’église, au lieu de dire « Amen », Vincent a dit :
     « Chaussée aux moines. »
+    Un fromage. À la messe.
   </p>
 
   <button onclick="showPhoto()">Voir l’état réel de la gambas</button>
 
-  <div id="photoGambas" class="hidden">
+  <div id="photo" class="hidden">
     <img src="photo.jpg" alt="Vincent la Gambas">
   </div>
 </div>
 
-<!-- VERSION VINCENT (2e VISITE) -->
-<div id="vincent" class="hidden">
-  <h1>🦐 Vincent 🦐</h1>
-  <p>Tu es revenu.</p>
-  <p>Donc tu es Vincent.</p>
-  <p>Il ne fallait pas.</p>
-  <p><strong>Gambas pas fraîche.</strong></p>
-</div>
-
-<!-- VERSION INSISTANCE (3e VISITE +) -->
-<div id="insistance" class="hidden">
-  <h1>🐒 Trop tard 🐒</h1>
-  <p>Tu as insisté.</p>
-  <p>Personne ne t’a demandé.</p>
-  <p>Mais tu es là.</p>
-  <p><strong>Voici ton animal totem.</strong></p>
-  <img src="singe.jpg" alt="Vincent en singe">
+<div id="vincentContent" class="hidden">
+  <h1>🦐 Mode Vincent activé 🦐</h1>
+  <p>
+    Tu es revenu.
+  </p>
+  <p>
+    Donc tu es Vincent.
+  </p>
+  <p>
+    Ce contenu n’était pas pour toi.
+  </p>
+  <p>
+    Mais tu as cliqué quand même.
+  </p>
+  <p>
+    <strong>Comme une gambas pas fraîche.</strong>
+  </p>
 </div>
 
 <script>
-  let visits = localStorage.getItem("visits");
-  visits = visits ? parseInt(visits) + 1 : 1;
-  localStorage.setItem("visits", visits);
-
-  if (visits === 1) {
-    document.getElementById("normal").classList.remove("hidden");
-  } else if (visits === 2) {
-    document.getElementById("vincent").classList.remove("hidden");
+  if (localStorage.getItem("alreadyVisited")) {
+    document.getElementById("vincentContent").classList.remove("hidden");
   } else {
-    document.getElementById("insistance").classList.remove("hidden");
+    localStorage.setItem("alreadyVisited", "true");
+    document.getElementById("normalContent").classList.remove("hidden");
   }
 
   function showPhoto() {
-    document.getElementById("photoGambas").classList.remove("hidden");
+    document.getElementById("photo").classList.remove("hidden");
   }
 </script>
 
