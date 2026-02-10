@@ -5,115 +5,169 @@
   <title>Vincent la Gambas</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      padding: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffaf4;
+      color: #222;
       max-width: 800px;
       margin: auto;
+      padding: 20px;
       line-height: 1.6;
     }
     h1 {
       text-align: center;
     }
-    .hidden {
-      display: none;
-    }
     button {
+      display: block;
+      margin: 30px auto;
       padding: 12px 20px;
       font-size: 16px;
       cursor: pointer;
-      margin-top: 20px;
     }
     img {
+      display: none;
       max-width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
+      margin: 30px auto;
+    }
+    .small {
+      font-size: 0.85em;
+      color: #666;
+      text-align: center;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-<div id="normalContent" class="hidden">
-  <h1>🦐 VINCENT « LA GAMBAS » 🦐</h1>
+<h1>🦐 VINCENT « LA GAMBAS » 🦐</h1>
 
-  <p>
-    Si tu es arrivé ici, c’est que tu viens de scanner le tatouage temporaire de
-    <strong>Vincent</strong>, surnommé depuis bien trop longtemps <strong>« la gambas »</strong>.
-  </p>
+<div id="content"></div>
 
-  <p>
-    À 40 ans, une gambas n’est plus vraiment ce qu’on appelle « fraîche du matin ».
-    Et Vincent non plus.
-  </p>
+<button id="photoBtn" onclick="showPhoto()">Voir la preuve</button>
 
-  <p>
-    Selon les experts en biologie maritime approximative :
-  </p>
-  <ul>
-    <li>texture moins ferme</li>
-    <li>confiance intacte malgré les signes</li>
-    <li>et légère odeur de nostalgie</li>
-  </ul>
+<img id="photoGambas" src="gambas.jpg" alt="Vincent version gambas">
+<img id="photoSinge" src="singe.jpg" alt="Vincent version singe">
 
-  <p>
-    Vincent ne perd pas ses cheveux. 
-    Ils prennent leurs distances. 
-    Comme certaines conversations avec lui.
-  </p>
-
-  <p>
-    Le style évoque Nicolas Peyrac, 
-    période où même Nicolas Peyrac doutait.
-  </p>
-
-  <p><strong>Anecdote n°1</strong><br>
-    Enfant, Vincent s’est coiffé avec de la crème dépilatoire.
-    Surpris, il a expliqué très sérieusement :
-    « Je mets du <em>zel</em>. »
-  </p>
-
-  <p><strong>Anecdote n°2</strong><br>
-    À l’église, au lieu de dire « Amen », Vincent a dit :
-    « Chaussée aux moines. »
-    Un fromage. À la messe.
-  </p>
-
-  <button onclick="showPhoto()">Voir l’état réel de la gambas</button>
-
-  <div id="photo" class="hidden">
-    <img src="photo.jpg" alt="Vincent la Gambas">
-  </div>
-</div>
-
-<div id="vincentContent" class="hidden">
-  <h1>🦐 Mode Vincent activé 🦐</h1>
-  <p>
-    Tu es revenu.
-  </p>
-  <p>
-    Donc tu es Vincent.
-  </p>
-  <p>
-    Ce contenu n’était pas pour toi.
-  </p>
-  <p>
-    Mais tu as cliqué quand même.
-  </p>
-  <p>
-    <strong>Comme une gambas pas fraîche.</strong>
-  </p>
-</div>
+<p class="small">Ce QR code a été scanné. La gambas aussi.</p>
 
 <script>
-  if (localStorage.getItem("alreadyVisited")) {
-    document.getElementById("vincentContent").classList.remove("hidden");
-  } else {
-    localStorage.setItem("alreadyVisited", "true");
-    document.getElementById("normalContent").classList.remove("hidden");
+  let scans = localStorage.getItem("gambasScans");
+  scans = scans ? parseInt(scans) : 0;
+  scans++;
+  localStorage.setItem("gambasScans", scans);
+
+  const content = document.getElementById("content");
+  const btn = document.getElementById("photoBtn");
+
+  if (scans === 1) {
+    // VERSION NORMALE (tout le monde)
+    content.innerHTML = `
+    <p>Bienvenue.</p>
+
+    <p>
+    Si tu es arrivé ici, c’est que tu viens de scanner le tatouage temporaire de Vincent,
+    surnommé depuis bien trop longtemps « la gambas ».
+    </p>
+
+    <p>
+    À 40 ans, une gambas n’est plus vraiment ce qu’on appelle
+    « fraîche du matin ».
+    </p>
+
+    <p>Et Vincent non plus.</p>
+
+    <p>
+    Selon les experts en biologie maritime approximative, plusieurs signes ne trompent pas :
+    </p>
+
+    <ul>
+      <li>une texture générale moins ferme qu’avant</li>
+      <li>une capacité étonnante à se croire encore « dans le coup »</li>
+      <li>et cette impression persistante de « ça a connu mieux »</li>
+    </ul>
+
+    <p>
+    Vincent ne perd pas ses cheveux.
+    Ils prennent simplement leurs distances.
+    </p>
+
+    <p>
+    Ils migrent.
+    Ils s’organisent.
+    Ils laissent derrière eux un paysage évoquant
+    Nicolas Peyrac, période expérimentale.
+    </p>
+
+    <p>
+    📝 <strong>Anecdote n°1</strong><br>
+    Enfant, Vincent a confondu du gel avec de la crème dépilatoire.
+    Interrogé, il a répondu :
+    <br><em>« Je mets du zel. »</em>
+    </p>
+
+    <p>
+    📝 <strong>Anecdote n°2</strong><br>
+    À l’église, au moment de dire « Amen », Vincent a déclaré :
+    <br><em>« Chaussée aux moines. »</em>
+    </p>
+
+    <p>
+    Depuis, chaque scan de ce QR code ajoute
+    une couche de malaise,
+    comme du citron sur un fruit de mer fatigué.
+    </p>
+
+    <p><strong>Joyeux 40 ans, Vincent.</strong></p>
+    `;
+  }
+
+  else if (scans === 2 || scans === 3) {
+    // VERSION VINCENT
+    content.innerHTML = `
+    <h2>Vincent.</h2>
+    <p>
+    Si tu lis ceci, c’est que tu as rescanné.
+    </p>
+    <p>
+    Tu savais que ce n’était pas une bonne idée.
+    </p>
+    <p>
+    Et pourtant tu l’as fait.
+    </p>
+    <p>
+    Comme la crème dépilatoire.
+    </p>
+    <p>
+    Respire.
+    Souris.
+    Tu es observé.
+    </p>
+    `;
+  }
+
+  else {
+    // VERSION CACHÉE (insistance)
+    content.innerHTML = `
+    <h2>🐒 MODE SINGE ACTIVÉ 🐒</h2>
+    <p>
+    Trop de scans.
+    Trop de curiosité.
+    </p>
+    <p>
+    La gambas a muté.
+    </p>
+    <p>
+    Félicitations Vincent.
+    </p>
+    `;
   }
 
   function showPhoto() {
-    document.getElementById("photo").classList.remove("hidden");
+    if (scans === 1) {
+      document.getElementById("photoGambas").style.display = "block";
+    } else {
+      document.getElementById("photoSinge").style.display = "block";
+    }
+    btn.style.display = "none";
   }
 </script>
 
