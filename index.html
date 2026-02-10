@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Vincent la Gambas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .hidden { display: none; }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    img {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- VERSION NORMALE -->
+<div id="normal" class="hidden">
+  <h1>🦐 VINCENT « LA GAMBAS » 🦐</h1>
+
+  <p>À 40 ans, une gambas n’est plus vraiment fraîche du matin.</p>
+  <p>Vincent non plus.</p>
+
+  <p>
+    Il ne perd pas ses cheveux. 
+    Ils prennent leurs distances. 
+    Style Nicolas Peyrac, période de doute.
+  </p>
+
+  <p><strong>Anecdote n°1</strong><br>
+    Enfant, Vincent s’est coiffé à la crème dépilatoire.<br>
+    « Je mets du <em>zel</em>. »
+  </p>
+
+  <p><strong>Anecdote n°2</strong><br>
+    À la messe, au lieu de « Amen » :<br>
+    « Chaussée aux moines. »
+  </p>
+
+  <button onclick="showPhoto()">Voir l’état réel de la gambas</button>
+
+  <div id="photoGambas" class="hidden">
+    <img src="photo.jpg" alt="Vincent la Gambas">
+  </div>
+</div>
+
+<!-- VERSION VINCENT (2e VISITE) -->
+<div id="vincent" class="hidden">
+  <h1>🦐 Vincent 🦐</h1>
+  <p>Tu es revenu.</p>
+  <p>Donc tu es Vincent.</p>
+  <p>Il ne fallait pas.</p>
+  <p><strong>Gambas pas fraîche.</strong></p>
+</div>
+
+<!-- VERSION INSISTANCE (3e VISITE +) -->
+<div id="insistance" class="hidden">
+  <h1>🐒 Trop tard 🐒</h1>
+  <p>Tu as insisté.</p>
+  <p>Personne ne t’a demandé.</p>
+  <p>Mais tu es là.</p>
+  <p><strong>Voici ton animal totem.</strong></p>
+  <img src="singe.jpg" alt="Vincent en singe">
+</div>
+
+<script>
+  let visits = localStorage.getItem("visits");
+  visits = visits ? parseInt(visits) + 1 : 1;
+  localStorage.setItem("visits", visits);
+
+  if (visits === 1) {
+    document.getElementById("normal").classList.remove("hidden");
+  } else if (visits === 2) {
+    document.getElementById("vincent").classList.remove("hidden");
+  } else {
+    document.getElementById("insistance").classList.remove("hidden");
+  }
+
+  function showPhoto() {
+    document.getElementById("photoGambas").classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
